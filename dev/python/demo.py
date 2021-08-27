@@ -1,3 +1,7 @@
+"""
+https://matplotlib.org/3.2.2/gallery/animation/double_pendulum_sgskip.html
+"""
+
 from numpy import sin, cos
 import numpy as np
 import matplotlib.pyplot as plt

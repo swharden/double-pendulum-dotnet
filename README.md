@@ -6,4 +6,4 @@ This repository contains a C# implementation of the double pendulum problem.
 
 ![](dev/double-pendulum-winforms.gif)
 
-[![](dev/double-pendulum-rainbow-static.png)](![](dev/double-pendulum-rainbow.mp4))
+[![](dev/double-pendulum-rainbow-static.png)](dev/double-pendulum-rainbow.mp4)

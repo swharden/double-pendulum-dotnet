@@ -30,10 +30,17 @@ namespace DPend.Model
 
         }
 
-        public Simulator(double theta1, double theta2)
+        public Simulator(double theta1, double theta2) => Reset(theta1, theta2);
+
+        /// <summary>
+        /// Set angles of the pendulums and set reset their momentums to zero.
+        /// </summary>
+        public void Reset(double theta1, double theta2)
         {
-            Pendulum1.Theta = theta1;
-            Pendulum2.Theta = theta2;
+            Pendulum1.ThetaDegrees = theta1;
+            Pendulum1.Omega = 0;
+            Pendulum2.ThetaDegrees = theta2;
+            Pendulum2.Omega = 0;
         }
 
         double[] Deriv(double[] yin)

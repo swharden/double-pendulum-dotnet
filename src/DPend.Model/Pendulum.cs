@@ -41,5 +41,15 @@ namespace DPend.Model
         /// Length (m)
         /// </summary>
         public double Length = 1.0;
+
+        /// <summary>
+        /// X position of the tip of the pendulum relative to its base
+        /// </summary>
+        public double DeltaX => Length * Math.Cos(Theta + Math.PI / 2);
+
+        /// <summary>
+        /// Y position of the tip of the pendulum relative to its base
+        /// </summary>
+        public double DeltaY => Length * Math.Sin(Theta + Math.PI / 2);
     }
 }

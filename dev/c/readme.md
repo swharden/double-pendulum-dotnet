@@ -5,6 +5,11 @@
 ```bash
 gcc solve_dpend.c -o solve_linux -lm
 ```
+
+```
+command line arguments: TMIN, TMAX, TH10, W10, TH20, W20, NSTEP
+```
+
 ```bash
 ./solve_linux 0.0 10.0 90.0 0.00 -10.0 0.0 1000 > solve_linux.txt
 ```
@@ -21,6 +26,10 @@ For more information see: [Use the Microsoft C++ toolset from the command line](
 
 ```bash
 cl solve_dpend.c /link /out:solve_windows.exe
+```
+
+```
+command line arguments: TMIN, TMAX, TH10, W10, TH20, W20, NSTEP
 ```
 
 ```bash

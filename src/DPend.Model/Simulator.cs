@@ -62,7 +62,13 @@ namespace DPend.Model
         /// Step the simulator forward in time
         /// </summary>
         /// <param name="dt">step size (seconds)</param>
-        public void Step(double dt)
+        public void Step(double dt, int repetitions = 1)
+        {
+            for (int i = 0; i < repetitions; i++)
+                StepOnce(dt);
+        }
+
+        private void StepOnce(double dt)
         {
             int N = 4;
             double[] yt = new double[N];

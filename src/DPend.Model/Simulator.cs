@@ -25,6 +25,17 @@ namespace DPend.Model
 
         public override string ToString() => $"{Iterations}: {Pendulum1.Theta:F6} {Pendulum1.Omega:F6} {Pendulum1.Theta:F6} {Pendulum1.Omega:F6}";
 
+        public Simulator()
+        {
+
+        }
+
+        public Simulator(double theta1, double theta2)
+        {
+            Pendulum1.Theta = theta1;
+            Pendulum2.Theta = theta2;
+        }
+
         double[] Deriv(double[] yin)
         {
             double del = yin[2] - yin[0];

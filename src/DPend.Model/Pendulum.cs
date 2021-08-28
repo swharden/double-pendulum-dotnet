@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DPend
+namespace DPend.Model
 {
     public class Pendulum
     {

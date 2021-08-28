@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DPend\DPend.csproj" />
+    <ProjectReference Include="..\DPend.Model\DPend.Model.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ namespace DPend.Tests
         public void Test_Simulator_ValuesMatch(int iterations, double time, double t1, double w1, double t2, double w2)
         {
             // values came from original C program http://www.physics.usyd.edu.au/~wheat/dpend_html/solve_dpend.c
-            var sim2 = new Simulator();
+            var sim2 = new DPend.Model.Simulator();
             sim2.Pendulum1.ThetaDegrees = 90;
             sim2.Pendulum1.OmegaDegrees = 0;
             sim2.Pendulum2.ThetaDegrees = -10;

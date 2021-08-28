@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 
-namespace DPend
+namespace DPend.Model
 {
     /// <summary>
     /// Double pendulum simulator

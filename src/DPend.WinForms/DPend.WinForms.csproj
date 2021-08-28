@@ -7,4 +7,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DPend.Model\DPend.Model.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,7 +4,7 @@
 
 This repository contains a C# implementation of the double pendulum problem.
 
-![](dev/double-pendulum.gif)
+![](dev/double-pendulum-winforms.gif)
 
 ## Resources
 

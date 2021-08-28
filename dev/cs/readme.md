@@ -1,4 +1,4 @@
-[solve_dpend.cs](solve_dpend.cs) is a C# port of [solve_dpend.c](http://www.physics.usyd.edu.au/~wheat/dpend_html/) by [Michael S. Wheatland](http://www.physics.usyd.edu.au/~wheat/).
+This folder contains a C# console application that is a .NET port of [solve_dpend.c](http://www.physics.usyd.edu.au/~wheat/dpend_html/) by [Michael S. Wheatland](http://www.physics.usyd.edu.au/~wheat/).
 
 Output values are not exact due to double- vs single-precision floating point math.
 

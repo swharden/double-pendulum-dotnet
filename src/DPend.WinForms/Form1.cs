@@ -12,7 +12,8 @@ namespace DPend.WinForms
 {
     public partial class Form1 : Form
     {
-        readonly Model.Simulator Sim = new(90, -10);
+        readonly Model.Simulator Sim = new(180, 10);
+        readonly public List<PointF> History = new();
 
         public Form1()
         {
@@ -27,54 +28,42 @@ namespace DPend.WinForms
             Image oldImage = pictureBox1.Image;
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             oldImage?.Dispose();
-            RenderNow();
+            Render();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Sim.Step(.001, (int)nudSpeed.Value);
-            RenderNow();
+            if (cbRun.Checked)
+            {
+                Sim.Step(.001, (int)nudSpeed.Value);
+                Render();
+            }
         }
 
-        private void RenderNow()
-        {
-            Render((Bitmap)pictureBox1.Image, Sim);
-            pictureBox1.Invalidate();
-        }
-
-        public static void Render(Bitmap bmp, Model.Simulator sim)
+        public void Render()
         {
             float pxPerMeter = 50;
 
+            Bitmap bmp = (Bitmap)pictureBox1.Image;
             using Graphics gfx = Graphics.FromImage(bmp);
             gfx.Clear(Color.White);
             gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            // frame text
-            Font font = new(FontFamily.GenericMonospace, 12, FontStyle.Regular);
-            gfx.DrawString($"{sim.Iterations}", font, Brushes.Black, 10, 10);
+            PointF pt1 = new(bmp.Width / 2, bmp.Height / 2);
+            PointF pt2 = new(pt1.X + (float)Sim.Pendulum1.DeltaX * pxPerMeter, pt1.Y + (float)Sim.Pendulum1.DeltaY * pxPerMeter);
+            PointF pt3 = new(pt2.X + (float)Sim.Pendulum2.DeltaX * pxPerMeter, pt2.Y + (float)Sim.Pendulum2.DeltaY * pxPerMeter);
+            History.Add(pt3);
 
-            // object at the center
-            gfx.TranslateTransform(bmp.Width / 2, bmp.Height / 2);
-            float r1 = 10;
-            RectangleF rect1 = new(-r1, -r1, r1 * 2, r1 * 2);
-            gfx.DrawEllipse(Pens.Black, rect1);
+            using Pen pen1 = new(Color.Green, 5) { EndCap = System.Drawing.Drawing2D.LineCap.Round };
+            using Pen pen2 = new(Color.Magenta, 5) { EndCap = System.Drawing.Drawing2D.LineCap.Round };
+            gfx.DrawLine(pen1, pt1, pt2);
+            gfx.DrawLine(pen2, pt2, pt3);
 
-            // draw the first pendulum
-            gfx.RotateTransform((float)sim.Pendulum1.ThetaDegrees);
-            gfx.DrawLine(Pens.Black, 0, 0, 0, (float)sim.Pendulum1.Length * pxPerMeter);
-            gfx.TranslateTransform(0, (float)sim.Pendulum1.Length * pxPerMeter);
-            float r2 = 10;
-            RectangleF rect2 = new(-r2, -r2, r2 * 2, r2 * 2);
-            gfx.FillEllipse(Brushes.Blue, rect2);
+            using Pen historyPen = new(Color.FromArgb(50, Color.Black), 2);
+            if (History.Count > 1)
+                gfx.DrawLines(historyPen, History.TakeLast(500).ToArray());
 
-            // draw the second pendulum
-            gfx.RotateTransform((float)sim.Pendulum2.ThetaDegrees);
-            gfx.DrawLine(Pens.Black, 0, 0, 0, (float)sim.Pendulum2.Length * pxPerMeter);
-            gfx.TranslateTransform(0, (float)sim.Pendulum2.Length * pxPerMeter);
-            float r3 = 10;
-            RectangleF rect3 = new(-r3, -r3, r3 * 2, r3 * 2);
-            gfx.FillEllipse(Brushes.Red, rect3);
+            pictureBox1.Invalidate();
         }
 
         private void nudLengthP1_ValueChanged(object sender, EventArgs e) => Sim.Pendulum1.Length = (double)nudLengthP1.Value;
@@ -84,5 +73,18 @@ namespace DPend.WinForms
         private void nudLengthP2_ValueChanged(object sender, EventArgs e) => Sim.Pendulum2.Length = (double)nudLengthP2.Value;
 
         private void nudMassP2_ValueChanged(object sender, EventArgs e) => Sim.Pendulum2.Mass = (double)nudMassP2.Value;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            History.Clear();
+            Random rand = new();
+            Sim.Reset(rand.NextDouble() * 360, rand.NextDouble() * 360);
+            Render();
+        }
     }
 }

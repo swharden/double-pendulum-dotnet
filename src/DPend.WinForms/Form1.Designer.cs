@@ -43,8 +43,9 @@ namespace DPend.WinForms
             this.label8 = new System.Windows.Forms.Label();
             this.nudLengthP2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.cbRun = new System.Windows.Forms.CheckBox();
             this.nudSpeed = new System.Windows.Forms.NumericUpDown();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMassP1)).BeginInit();
@@ -226,7 +227,8 @@ namespace DPend.WinForms
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.btnReset);
+            this.groupBox3.Controls.Add(this.cbRun);
             this.groupBox3.Controls.Add(this.nudSpeed);
             this.groupBox3.Location = new System.Drawing.Point(422, 12);
             this.groupBox3.Name = "groupBox3";
@@ -235,14 +237,15 @@ namespace DPend.WinForms
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Speed";
             // 
-            // label3
+            // cbRun
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Steps per frame";
+            this.cbRun.AutoSize = true;
+            this.cbRun.Location = new System.Drawing.Point(6, 18);
+            this.cbRun.Name = "cbRun";
+            this.cbRun.Size = new System.Drawing.Size(47, 19);
+            this.cbRun.TabIndex = 4;
+            this.cbRun.Text = "Run";
+            this.cbRun.UseVisualStyleBackColor = true;
             // 
             // nudSpeed
             // 
@@ -261,10 +264,20 @@ namespace DPend.WinForms
             this.nudSpeed.Size = new System.Drawing.Size(89, 23);
             this.nudSpeed.TabIndex = 3;
             this.nudSpeed.Value = new decimal(new int[] {
-            25,
+            20,
             0,
             0,
             0});
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(50, 13);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(45, 21);
+            this.btnReset.TabIndex = 5;
+            this.btnReset.Text = "reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Form1
             // 
@@ -309,8 +322,9 @@ namespace DPend.WinForms
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudLengthP2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudSpeed;
+        private System.Windows.Forms.CheckBox cbRun;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

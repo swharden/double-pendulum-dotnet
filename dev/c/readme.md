@@ -1,4 +1,4 @@
-from http://www.physics.usyd.edu.au/~wheat/dpend_html/
+[solve_dpend.c](solve_dpend.c) was created by [Michael S. Wheatland](http://www.physics.usyd.edu.au/~wheat/) and is released (with permission of the original author) under the MIT license. See his website [The Double Pendulum](http://www.physics.usyd.edu.au/~wheat/dpend_html/) for more information.
 
 ## Linux
 

@@ -14,17 +14,22 @@ namespace DPend.Tests
         public void Test_Simulator_ValuesMatch(int iterations, double time, double t1, double w1, double t2, double w2)
         {
             // values came from original C program http://www.physics.usyd.edu.au/~wheat/dpend_html/solve_dpend.c
-            var sim2 = new Simulator(90, 0, -10, 0);
+            var sim2 = new Simulator();
+            sim2.Pendulum1.ThetaDegrees = 90;
+            sim2.Pendulum1.OmegaDegrees = 0;
+            sim2.Pendulum2.ThetaDegrees = -10;
+            sim2.Pendulum2.OmegaDegrees = 0;
+
             double h = 10 / 999.0;
             for (int i = 0; i < iterations; i++)
                 sim2.Step(h);
 
             double precision = 1e-5;
             Assert.AreEqual(time, sim2.Time, precision);
-            Assert.AreEqual(t1, sim2.Theta1, precision);
-            Assert.AreEqual(w1, sim2.Omega1, precision);
-            Assert.AreEqual(t2, sim2.Theta2, precision);
-            Assert.AreEqual(w2, sim2.Omega2, precision);
+            Assert.AreEqual(t1, sim2.Pendulum1.Theta, precision);
+            Assert.AreEqual(w1, sim2.Pendulum1.Omega, precision);
+            Assert.AreEqual(t2, sim2.Pendulum2.Theta, precision);
+            Assert.AreEqual(w2, sim2.Pendulum2.Omega, precision);
         }
     }
 }
